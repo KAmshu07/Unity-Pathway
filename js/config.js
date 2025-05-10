@@ -20,7 +20,7 @@ const CONFIG = {
    */
   content: {
     // Base path for all content
-    basePath: "./docs/content/",
+    basePath: "/Unity-Pathway/docs/content/",
     
     // Structure file that defines phases and module organization
     structureFile: "structure.json",
