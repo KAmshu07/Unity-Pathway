@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Developer Pathway</title>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Code highlighting with Prism.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-okaidia.min.css">
+    
+    <!-- Markdown parser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dark-mode">
+    <!-- Initial loading screen -->
+    <div id="initial-loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading Unity Developer Pathway...</div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar">
+                <div class="loading-progress-value"></div>
+            </div>
+            <div class="loading-progress-text">Initializing...</div>
+        </div>
+    </div>
+
+    <!-- Main container -->
+    <div class="main-container">
+        <!-- Side Navigation -->
+        <aside class="sidebar">
+            <!-- Logo -->
+            <div class="sidebar-logo logo-container">
+                <div class="logo-icon logo"><i class="fa-solid fa-gamepad"></i></div>
+                <h2 class="logo-text">Unity Pathway</h2>
+                <button id="menu-toggle" class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Main Navigation -->
+            <nav id="main-nav" class="sidebar-nav">
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-item active" data-view="dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item" data-view="dashboard">
+                        <i class="fas fa-book"></i>
+                        <span>Modules</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item" data-view="resources">
+                        <i class="fas fa-cube"></i>
+                        <span>Resources</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item" data-view="about">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About</span>
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <!-- Bottom actions -->
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="sidebar-action">
+                    <i class="fas fa-sun"></i>
+                    <span>Light Mode</span>
+                </button>
+                <button id="profile-button" class="sidebar-action">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </button>
+                <a href="#" id="feedback-link" class="sidebar-action">
+                    <i class="fas fa-comment"></i>
+                    <span>Feedback</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-title">
+                    <h2 id="view-title">Dashboard</h2>
+                </div>
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="Search...">
+                        <button id="search-button"><i class="fas fa-search"></i></button>
+                        <div class="inline-search-results" id="inline-search-results"></div>
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="user-profile">JD</div>
+                </div>
+            </header>
+
+            <!-- Main views container -->
+            <div class="views-container">
+                <!-- Dashboard view -->
+                <section id="dashboard-view" class="view-section active">
+                    <!-- Hero section -->
+                    <section class="hero">
+                        <div class="hero-content">
+                            <h1>Master Unity Game Development</h1>
+                            <p>From beginner to independent developer with our comprehensive learning path</p>
+                            <div class="hero-buttons">
+                                <button class="btn btn-primary" id="start-learning-btn">Start Learning</button>
+                                <button class="btn btn-secondary" id="view-syllabus-btn">View Syllabus</button>
+                            </div>
+                        </div>
+                        <div class="hero-graphic">
+                            <i class="fa-solid fa-cube"></i>
+                        </div>
+                    </section>
+
+                    <!-- Progress section -->
+                    <section class="progress-section">
+                        <div class="progress-card">
+                            <div class="progress-header">
+                                <h2>Your Progress</h2>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-value" id="overall-progress-bar"></div>
+                                    </div>
+                                    <span class="progress-percentage" id="overall-progress-text">0%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-stats">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <div class="stat-value" id="modules-completed-count">0/1</div>
+                                        <div class="stat-label">Modules Completed</div>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <div class="stat-value" id="topics-completed-count">0/15</div>
+                                        <div class="stat-label">Topics Completed</div>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <div class="stat-value" id="time-spent">0h</div>
+                                        <div class="stat-label">Time Spent</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="learning-path">
+                            <div class="path-header progress-header">
+                                <h2>Learning Path</h2>
+                                <div class="path-actions progress-controls">
+                                    <button id="show-completed-btn" class="btn btn-outline">
+                                        Hide Completed
+                                    </button>
+                                    <div class="view-toggle">
+                                        <button class="view-btn active" id="grid-view-btn"><i class="fas fa-th-large"></i></button>
+                                        <button class="view-btn" id="list-view-btn"><i class="fas fa-list"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="modules-container" class="modules-container grid-view">
+                                <!-- Modules will be loaded dynamically here -->
+                                <div class="loading-placeholder">
+                                    <div class="loading-spinner"></div>
+                                    <p>Loading modules...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <!-- Module view -->
+                <section id="module-view" class="view-section">
+                    <div class="module-header module-navigation">
+                        <button class="btn btn-back" id="back-to-dashboard-btn">
+                            <i class="fas fa-arrow-left"></i> Back to Modules
+                        </button>
+                        <div class="module-actions">
+                            <button class="btn btn-outline" id="bookmark-module-btn">
+                                <i class="far fa-bookmark"></i> Bookmark
+                            </button>
+                            <button class="btn btn-outline" id="share-module-btn">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="module-content">
+                        <h1 id="module-title">Module Title</h1>
+                        <div class="module-meta">
+                            <span class="module-phase" id="module-phase">Foundation Phase</span>
+                            <span class="module-time" id="module-time">
+                                <i class="far fa-clock"></i> <span id="module-estimated-time">10 hours</span>
+                            </span>
+                        </div>
+                        
+                        <div class="module-description" id="module-description">
+                            <!-- Module description will be loaded here -->
+                        </div>
+                        
+                        <div class="module-topics-container">
+                            <h2>Topics</h2>
+                            <div id="module-topics" class="module-topics">
+                                <!-- Topics will be loaded here -->
+                                <div class="loading-placeholder">
+                                    <div class="loading-spinner"></div>
+                                    <p>Loading topics...</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="module-resources-container" id="module-resources-container">
+                            <h2>Additional Resources</h2>
+                            <ul id="module-resources" class="module-resources">
+                                <!-- Resources will be loaded here -->
+                            </ul>
+                        </div>
+                        
+                        <div class="module-navigation-bottom">
+                            <button class="btn btn-outline" id="prev-module-btn">
+                                <i class="fas fa-chevron-left"></i> Previous Module
+                            </button>
+                            <button class="btn btn-primary" id="mark-module-complete-btn">
+                                Mark as Complete
+                            </button>
+                            <button class="btn btn-outline" id="next-module-btn">
+                                Next Module <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Topic view -->
+                <section id="topic-view" class="view-section">
+                    <div class="topic-header topic-navigation">
+                        <button class="btn btn-back" id="back-to-module-btn">
+                            <i class="fas fa-arrow-left"></i> Back to Module
+                        </button>
+                        <div class="topic-actions">
+                            <button class="btn btn-outline" id="bookmark-topic-btn">
+                                <i class="far fa-bookmark"></i> Bookmark
+                            </button>
+                            <button class="btn btn-outline" id="toggle-notes-btn">
+                                <i class="far fa-sticky-note"></i> Notes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-content-wrapper">
+                        <div class="topic-container main-content">
+                            <h1 id="topic-title">Topic Title</h1>
+                            <div class="topic-meta">
+                                <span id="topic-module-link">From: <a href="#" id="topic-module-title-link">Module Title</a></span>
+                            </div>
+                            
+                            <div class="topic-content" id="topic-content">
+                                <!-- Topic content will be loaded here -->
+                                <div class="loading-placeholder">
+                                    <div class="loading-spinner"></div>
+                                    <p>Loading content...</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="notes-panel" id="notes-panel">
+                            <div class="notes-header">
+                                <h3>Your Notes</h3>
+                                <button class="btn btn-small" id="save-notes-btn">Save</button>
+                            </div>
+                            <textarea id="notes-textarea" placeholder="Add your notes here..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="subtopics-section" id="subtopics-section">
+                        <h2>Subtopics</h2>
+                        <div class="subtopics-progress">
+                            <div class="progress-text">
+                                <span id="subtopics-completed-count">0/0</span> subtopics completed
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-value" id="subtopics-progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="subtopics-list" id="subtopics-list">
+                            <!-- Subtopics will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="topic-navigation-bottom">
+                        <button class="btn btn-outline" id="prev-topic-btn">
+                            <i class="fas fa-chevron-left"></i> Previous Topic
+                        </button>
+                        <button class="btn btn-primary" id="mark-topic-complete-btn">
+                            Mark as Complete
+                        </button>
+                        <button class="btn btn-outline" id="next-topic-btn">
+                            Next Topic <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Resources view -->
+                <section id="resources-view" class="view-section">
+                    <h1>Learning Resources</h1>
+                    <p>This page contains additional resources to support your learning journey.</p>
+                    
+                    <div class="resources-categories">
+                        <div class="resources-category">
+                            <h2>Documentation</h2>
+                            <ul class="resources-list" id="documentation-resources">
+                                <li><a href="https://docs.unity3d.com/Manual/index.html" target="_blank">Unity Manual</a></li>
+                                <li><a href="https://docs.unity3d.com/ScriptReference/index.html" target="_blank">Unity Scripting API</a></li>
+                                <li><a href="https://docs.microsoft.com/en-us/dotnet/csharp/" target="_blank">C# Documentation</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="resources-category">
+                            <h2>Community</h2>
+                            <ul class="resources-list">
+                                <li><a href="https://forum.unity.com/" target="_blank">Unity Forums</a></li>
+                                <li><a href="https://unity.com/community" target="_blank">Unity Community</a></li>
+                                <li><a href="https://answers.unity.com/" target="_blank">Unity Answers</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="resources-category">
+                            <h2>Tools</h2>
+                            <ul class="resources-list">
+                                <li><a href="https://unity.com/download" target="_blank">Download Unity</a></li>
+                                <li><a href="https://visualstudio.microsoft.com/" target="_blank">Visual Studio</a></li>
+                                <li><a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About view -->
+                <section id="about-view" class="view-section">
+                    <h1>About Unity Developer Pathway</h1>
+                    <p>Unity Developer Pathway is a comprehensive learning platform designed to take you from a complete beginner to a job-ready Unity developer.</p>
+                    
+                    <div class="about-content">
+                        <h2>Our Philosophy</h2>
+                        <p>Our approach focuses on building fundamental understanding rather than just following tutorials. We emphasize:</p>
+                        <ul>
+                            <li><strong>Core Principles</strong>: Understanding the "why" behind technical concepts</li>
+                            <li><strong>Independent Problem-Solving</strong>: Developing the skills to tackle any challenge</li>
+                            <li><strong>Industry-Standard Practices</strong>: Learning workflows used by professional development teams</li>
+                            <li><strong>Adaptability</strong>: Building knowledge that adapts to new tools, frameworks, and techniques</li>
+                        </ul>
+                        
+                        <h2>Learning Path Structure</h2>
+                        <p>The curriculum is divided into four phases:</p>
+                        <ol>
+                            <li><strong>Foundation Phase</strong>: Core Unity concepts and C# programming fundamentals</li>
+                            <li><strong>Intermediate Phase</strong>: 2D and 3D development, animation, and UI systems</li>
+                            <li><strong>Advanced Phase</strong>: Complex game systems, architecture, and optimization</li>
+                            <li><strong>Specialized Knowledge</strong>: Focused areas like AR/VR, networking, mobile, and procedural generation</li>
+                        </ol>
+                        
+                        <h2>Contact</h2>
+                        <p>If you have questions or feedback about the learning platform, please contact us at:</p>
+                        <p><a href="mailto:support@unitydeveloperpathway.com">support@unitydeveloperpathway.com</a></p>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Profile sidebar -->
+        <aside id="profile-sidebar" class="profile-sidebar">
+            <div class="sidebar-header">
+                <h2>Your Profile</h2>
+                <button id="close-profile-sidebar-btn" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="profile-section">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="profile-info">
+                    <h3>Learning Progress</h3>
+                    <div class="profile-progress">
+                        <div class="progress-bar">
+                            <div class="progress-value" id="sidebar-progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text" id="sidebar-progress-text">0% Complete</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Bookmarks</h3>
+                <ul id="bookmarks-list" class="sidebar-list">
+                    <!-- Bookmarks will be loaded here -->
+                    <li class="empty-message">No bookmarks yet</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Recent Activity</h3>
+                <ul id="activity-list" class="sidebar-list">
+                    <!-- Activity will be loaded here -->
+                    <li class="empty-message">No recent activity</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Settings</h3>
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <label for="font-size-select">Font Size</label>
+                        <select id="font-size-select">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="auto-save-notes">Auto-save Notes</label>
+                        <label class="switch">
+                            <input type="checkbox" id="auto-save-notes" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <button id="reset-progress-btn" class="btn btn-danger">Reset Progress</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Search modal -->
+        <div id="search-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Search Results</h2>
+                    <button id="close-search-modal-btn" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="search-form">
+                    <input type="text" id="modal-search-input" placeholder="Refine your search...">
+                    <button id="modal-search-btn" class="btn btn-primary">Search</button>
+                </div>
+                <div id="search-results" class="search-results">
+                    <!-- Search results will be loaded here -->
+                    <p class="empty-message">Enter a search term above</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback modal -->
+        <div id="feedback-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Provide Feedback</h2>
+                    <button id="close-feedback-modal-btn" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="feedback-form" id="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-type">Feedback Type</label>
+                        <select id="feedback-type" required>
+                            <option value="">Select type</option>
+                            <option value="suggestion">Suggestion</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="content">Content Issue</option>
+                            <option value="praise">Praise</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-message">Your Feedback</label>
+                        <textarea id="feedback-message" rows="5" placeholder="Please describe your feedback..." required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share modal -->
+        <div id="share-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Share This Content</h2>
+                    <button id="close-share-modal-btn" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="share-options">
+                    <div class="share-link-section">
+                        <label for="share-url">Direct Link</label>
+                        <div class="share-url-container">
+                            <input type="text" id="share-url" readonly>
+                            <button id="copy-url-btn" class="btn btn-outline">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    <div class="share-social">
+                        <button class="btn btn-social btn-twitter">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="btn btn-social btn-facebook">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </button>
+                        <button class="btn btn-social btn-linkedin">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirm modal -->
+        <div id="confirm-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="confirm-title">Confirmation</h2>
+                    <button id="close-confirm-modal-btn" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="confirm-content">
+                    <p id="confirm-message">Are you sure you want to proceed?</p>
+                </div>
+                <div class="confirm-actions">
+                    <button id="confirm-cancel-btn" class="btn btn-outline">Cancel</button>
+                    <button id="confirm-action-btn" class="btn btn-danger">Confirm</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Separate overlays for different modal types -->
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+        <div id="modal-overlay" class="modal-overlay"></div>
+
+        <!-- Toast notifications -->
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-csharp.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/content-loader.js"></script>
+    <script src="js/ui-manager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

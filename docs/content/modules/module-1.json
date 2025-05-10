@@ -1,0 +1,127 @@
+{
+  "id": "module-1",
+  "title": "Introduction to Game Development & Unity Basics",
+  "description": "Learn the fundamentals of game development and get familiar with Unity's interface and workflow.",
+  "estimatedTime": "10 hours",
+  "phase": "foundation",
+  "order": 1,
+  "topics": [
+    {
+      "id": "topic-1-1",
+      "title": "Game Engine Fundamentals",
+      "description": "Understanding what a game engine is and its role in development.",
+      "contentPath": "topics/module-1/topic-1-1.md",
+      "subtopics": [
+        {
+          "id": "subtopic-1-1-1",
+          "title": "Introduction"
+        },
+        {
+          "id": "subtopic-1-1-2",
+          "title": "What is a Game Engine?"
+        },
+        {
+          "id": "subtopic-1-1-3",
+          "title": "The Role of Game Engines in Development"
+        },
+        {
+          "id": "subtopic-1-1-4",
+          "title": "Comparison with Custom-Built Solutions"
+        },
+        {
+          "id": "subtopic-1-1-5",
+          "title": "Game Engine vs. Game Framework"
+        }
+      ]
+    },
+    {
+      "id": "topic-1-2",
+      "title": "Unity Interface & Workflow",
+      "description": "Learn how to navigate and use Unity's editor interface effectively.",
+      "contentPath": "topics/module-1/topic-1-2.md",
+      "subtopics": [
+        {
+          "id": "subtopic-1-2-1",
+          "title": "Unity Hub navigation and project management"
+        },
+        {
+          "id": "subtopic-1-2-2",
+          "title": "Editor layout and customization"
+        },
+        {
+          "id": "subtopic-1-2-3",
+          "title": "Scene view, Game view, Inspector, Hierarchy, Project, and Console panels"
+        },
+        {
+          "id": "subtopic-1-2-4",
+          "title": "Editor shortcuts and productivity techniques"
+        }
+      ]
+    },
+    {
+      "id": "topic-1-3",
+      "title": "Unity Project Structure",
+      "description": "Understand how Unity projects are organized and structured.",
+      "contentPath": "topics/module-1/topic-1-3.md",
+      "subtopics": [
+        {
+          "id": "subtopic-1-3-1",
+          "title": "Standard folder organization (Scripts, Prefabs, Scenes, etc.)"
+        },
+        {
+          "id": "subtopic-1-3-2",
+          "title": "Asset types and importing process"
+        },
+        {
+          "id": "subtopic-1-3-3",
+          "title": "Project settings and configuration"
+        },
+        {
+          "id": "subtopic-1-3-4",
+          "title": "Build settings overview"
+        }
+      ]
+    },
+    {
+      "id": "topic-1-4",
+      "title": "Scene Setup Fundamentals",
+      "description": "Learn how to set up and organize scenes in Unity.",
+      "contentPath": "topics/module-1/topic-1-4.md",
+      "subtopics": [
+        {
+          "id": "subtopic-1-4-1",
+          "title": "Creating and managing scenes"
+        },
+        {
+          "id": "subtopic-1-4-2",
+          "title": "GameObjects hierarchy and nesting"
+        },
+        {
+          "id": "subtopic-1-4-3",
+          "title": "Transform manipulation (position, rotation, scale)"
+        },
+        {
+          "id": "subtopic-1-4-4",
+          "title": "Using the Scene view tools effectively"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "type": "documentation",
+      "title": "Unity Manual: Getting Started",
+      "url": "https://docs.unity3d.com/Manual/UnityOverview.html"
+    },
+    {
+      "type": "video",
+      "title": "Unity Interface Overview",
+      "url": "https://learn.unity.com/tutorial/using-the-unity-interface"
+    },
+    {
+      "type": "project",
+      "title": "Starter Project Template",
+      "url": "resources/starter-project.zip"
+    }
+  ]
+}

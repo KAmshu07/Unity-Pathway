@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "title": "Unity Developer Pathway",
+  "description": "From beginner to independent developer with our comprehensive learning path",
+  "phases": [
+    {
+      "id": "foundation",
+      "name": "Foundation Phase",
+      "description": "Build a solid foundation in Unity and C# programming",
+      "modules": [
+        "module-1"
+      ]
+    }
+  ],
+  "specializedAreas": []
+}
