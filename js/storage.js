@@ -17,6 +17,7 @@ const Storage = {
     // User content
     bookmarks: [],
     notes: {},
+    highlights: {},
     
     // Activity history
     activities: [],
@@ -355,6 +356,45 @@ const Storage = {
       this.saveUserData(userData);
     }
     
+    return userData;
+  },
+
+  /**
+   * Save highlighted HTML for a topic
+   * @param {string} topicId - Topic ID
+   * @param {string} html - Highlighted HTML content
+   * @param {Object} userData - User data object
+   * @returns {Object} Updated user data
+   */
+  saveHighlights(topicId, html, userData) {
+    userData.highlights[topicId] = html;
+    userData.lastUpdated = Date.now();
+    this.saveUserData(userData);
+    return userData;
+  },
+
+  /**
+   * Get saved highlights for a topic
+   * @param {string} topicId - Topic ID
+   * @param {Object} userData - User data object
+   * @returns {string|null} HTML string or null
+   */
+  getHighlights(topicId, userData) {
+    return userData.highlights[topicId] || null;
+  },
+
+  /**
+   * Clear highlights for a topic
+   * @param {string} topicId - Topic ID
+   * @param {Object} userData - User data object
+   * @returns {Object} Updated user data
+   */
+  clearHighlights(topicId, userData) {
+    if (userData.highlights[topicId]) {
+      delete userData.highlights[topicId];
+      userData.lastUpdated = Date.now();
+      this.saveUserData(userData);
+    }
     return userData;
   },
   

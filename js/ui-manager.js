@@ -133,6 +133,8 @@ const UIManager = {
       markTopicCompleteBtn: Utils.dom.getId('mark-topic-complete-btn'),
       bookmarkTopicBtn: Utils.dom.getId('bookmark-topic-btn'),
       toggleNotesBtn: Utils.dom.getId('toggle-notes-btn'),
+      highlightBtn: Utils.dom.getId('highlight-btn'),
+      highlightColorPicker: Utils.dom.getId('highlight-color-picker'),
       notesPanel: Utils.dom.getId('notes-panel'),
       notesTextarea: Utils.dom.getId('notes-textarea'),
       saveNotesBtn: Utils.dom.getId('save-notes-btn'),
@@ -279,6 +281,14 @@ const UIManager = {
 
     this.elements.saveNotesBtn.addEventListener('click', () => {
       this.saveNotes();
+    });
+
+    this.elements.highlightBtn.addEventListener('click', () => {
+      this.startHighlight();
+    });
+
+    this.elements.highlightColorPicker.addEventListener('change', (e) => {
+      this.applyHighlight(e.target.value);
     });
 
     this.elements.notesTextarea.addEventListener('input', () => {
@@ -1084,10 +1094,14 @@ const UIManager = {
     // Load topic content
     if (topic.contentPath) {
       const content = await ContentLoader.loadTopicContent(topic.contentPath);
-      this.elements.topicContent.innerHTML = content;
-
-      // Highlight code blocks
-      Utils.string.highlightCode(this.elements.topicContent);
+      const savedHtml = Storage.getHighlights(topicId, this.userData);
+      if (savedHtml) {
+        this.elements.topicContent.innerHTML = savedHtml;
+      } else {
+        this.elements.topicContent.innerHTML = content;
+        // Highlight code blocks
+        Utils.string.highlightCode(this.elements.topicContent);
+      }
       // Make it visible
       this.elements.topicContent.classList.add('expanded');
 
@@ -1116,6 +1130,9 @@ const UIManager = {
 
     // Load notes
     this.loadNotes(topicId);
+
+    // Ensure highlights are saved
+    this.loadHighlights(topicId);
 
     // Update mark complete button
     this.updateTopicCompleteButton(topic);
@@ -1936,6 +1953,62 @@ const UIManager = {
     if (!this.userData.settings.autoSaveNotes) {
       Utils.notification.toast('Notes saved', 'success');
     }
+  },
+
+  /**
+   * Start highlight process by showing color picker
+   */
+  startHighlight() {
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed) {
+      Utils.notification.toast('Select text to highlight', 'info');
+      return;
+    }
+    this.elements.highlightColorPicker.value = '#ffff00';
+    this.elements.highlightColorPicker.click();
+  },
+
+  /**
+   * Apply highlight with selected color
+   * @param {string} color - Hex color
+   */
+  applyHighlight(color) {
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed) return;
+
+    const range = selection.getRangeAt(0);
+    if (!this.elements.topicContent.contains(range.commonAncestorContainer)) {
+      Utils.notification.toast('Please highlight within the topic content', 'info');
+      return;
+    }
+
+    const span = document.createElement('span');
+    span.classList.add('text-highlight');
+    span.style.backgroundColor = color;
+    range.surroundContents(span);
+    selection.removeAllRanges();
+
+    this.saveHighlights();
+  },
+
+  /**
+   * Load saved highlights for current topic
+   * @param {string} topicId - Topic ID
+   */
+  loadHighlights(topicId) {
+    const html = Storage.getHighlights(topicId, this.userData);
+    if (html) {
+      this.elements.topicContent.innerHTML = html;
+    }
+  },
+
+  /**
+   * Save highlights for current topic
+   */
+  saveHighlights() {
+    if (!this.state.currentTopicId) return;
+    const html = this.elements.topicContent.innerHTML;
+    this.userData = Storage.saveHighlights(this.state.currentTopicId, html, this.userData);
   },
 
   /**
