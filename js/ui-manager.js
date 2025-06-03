@@ -21,7 +21,8 @@ const UIManager = {
     shareModalOpen: false,
     confirmModalOpen: false,
     notesOpen: false,
-    confirmCallback: null
+    confirmCallback: null,
+    highlightMode: false
   },
 
   /**
@@ -135,6 +136,8 @@ const UIManager = {
       toggleNotesBtn: Utils.dom.getId('toggle-notes-btn'),
       highlightBtn: Utils.dom.getId('highlight-btn'),
       highlightColorPicker: Utils.dom.getId('highlight-color-picker'),
+      highlightToolbar: Utils.dom.getId('highlight-toolbar'),
+      highlightColorOptions: Utils.dom.qsa('#highlight-toolbar .color-option'),
       notesPanel: Utils.dom.getId('notes-panel'),
       notesTextarea: Utils.dom.getId('notes-textarea'),
       saveNotesBtn: Utils.dom.getId('save-notes-btn'),
@@ -284,11 +287,35 @@ const UIManager = {
     });
 
     this.elements.highlightBtn.addEventListener('click', () => {
-      this.startHighlight();
+      this.toggleHighlightMode();
     });
 
     this.elements.highlightColorPicker.addEventListener('change', (e) => {
       this.applyHighlight(e.target.value);
+      this.hideHighlightToolbar();
+    });
+
+    this.elements.highlightColorOptions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const color = btn.dataset.color;
+        if (color === 'custom') {
+          this.elements.highlightColorPicker.value = '#ffff00';
+          this.elements.highlightColorPicker.click();
+        } else {
+          this.applyHighlight(color);
+          this.hideHighlightToolbar();
+        }
+      });
+    });
+
+    this.elements.topicContent.addEventListener('mouseup', () => {
+      if (!this.state.highlightMode) return;
+      const sel = window.getSelection();
+      if (sel && !sel.isCollapsed && this.elements.topicContent.contains(sel.getRangeAt(0).commonAncestorContainer)) {
+        this.showHighlightToolbar(sel);
+      } else {
+        this.hideHighlightToolbar();
+      }
     });
 
     this.elements.notesTextarea.addEventListener('input', () => {
@@ -1076,6 +1103,9 @@ const UIManager = {
     // Update state
     this.state.currentModuleId = moduleId;
     this.state.currentTopicId = topicId;
+    this.state.highlightMode = false;
+    this.elements.highlightBtn.classList.remove('active');
+    this.hideHighlightToolbar();
 
     // Show topic view
     this.showView('topic');
@@ -1956,16 +1986,38 @@ const UIManager = {
   },
 
   /**
-   * Start highlight process by showing color picker
+   * Toggle highlight mode
    */
-  startHighlight() {
-    const selection = window.getSelection();
-    if (!selection || selection.isCollapsed) {
-      Utils.notification.toast('Select text to highlight', 'info');
-      return;
+  toggleHighlightMode() {
+    this.state.highlightMode = !this.state.highlightMode;
+    this.elements.highlightBtn.classList.toggle('active', this.state.highlightMode);
+
+    if (this.state.highlightMode) {
+      Utils.notification.toast('Highlight mode enabled. Select text to highlight', 'info');
+    } else {
+      this.hideHighlightToolbar();
     }
-    this.elements.highlightColorPicker.value = '#ffff00';
-    this.elements.highlightColorPicker.click();
+  },
+
+  /**
+   * Show color options near selected text
+   * @param {Selection} selection
+   */
+  showHighlightToolbar(selection) {
+    const rect = selection.getRangeAt(0).getBoundingClientRect();
+    const toolbar = this.elements.highlightToolbar;
+    toolbar.style.top = `${rect.bottom + window.scrollY + 5}px`;
+    toolbar.style.left = `${rect.left + window.scrollX}px`;
+    toolbar.classList.add('active');
+  },
+
+  /**
+   * Hide highlight color toolbar
+   */
+  hideHighlightToolbar() {
+    if (this.elements.highlightToolbar) {
+      this.elements.highlightToolbar.classList.remove('active');
+    }
   },
 
   /**

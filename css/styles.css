@@ -2281,6 +2281,49 @@ body.dark-mode .resources-category {
   border-radius: 2px;
 }
 
+/* Highlight color toolbar */
+.highlight-toolbar {
+  position: absolute;
+  display: none;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+}
+
+.highlight-toolbar.active {
+  display: flex;
+  align-items: center;
+}
+
+.highlight-toolbar .color-option {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.highlight-toolbar .color-option.custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-secondary);
+  color: var(--text-color);
+}
+
+#highlight-btn.active {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+body.dark-mode #highlight-btn.active {
+  background-color: var(--dark-primary);
+}
+
 /* Utility Classes */
 .visually-hidden {
   position: absolute;
