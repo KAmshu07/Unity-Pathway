@@ -1,0 +1,172 @@
+{
+  "id": "module-2",
+  "title": "C# Programming for Unity",
+  "description": "Master C# programming concepts essential for Unity game development, from basic syntax to advanced programming patterns.",
+  "estimatedTime": "15 hours",
+  "phase": "foundation",
+  "order": 2,
+  "topics": [
+    {
+      "id": "topic-2-1",
+      "title": "C# Language Fundamentals",
+      "description": "Learn the core syntax, data types, and foundational concepts of C# programming.",
+      "contentPath": "topics/module-2/topic-2-1.md",
+      "subtopics": [
+        {
+          "id": "subtopic-2-1-1",
+          "title": "Introduction to C# and .NET"
+        },
+        {
+          "id": "subtopic-2-1-2",
+          "title": "Syntax and Structure"
+        },
+        {
+          "id": "subtopic-2-1-3",
+          "title": "Variables and Data Types"
+        },
+        {
+          "id": "subtopic-2-1-4",
+          "title": "Operators and Expressions"
+        },
+        {
+          "id": "subtopic-2-1-5",
+          "title": "Type Conversion and Checking"
+        },
+        {
+          "id": "subtopic-2-1-6",
+          "title": "Namespace Organization"
+        }
+      ]
+    },
+    {
+      "id": "topic-2-2",
+      "title": "Control Flow",
+      "description": "Master conditional statements, loops, and program flow control in C#.",
+      "contentPath": "topics/module-2/topic-2-2.md",
+      "subtopics": [
+        {
+          "id": "subtopic-2-2-1",
+          "title": "Conditional Statements (if/else, switch)"
+        },
+        {
+          "id": "subtopic-2-2-2",
+          "title": "Loop Structures (for, foreach, while, do-while)"
+        },
+        {
+          "id": "subtopic-2-2-3",
+          "title": "Jump Statements (break, continue, return)"
+        },
+        {
+          "id": "subtopic-2-2-4",
+          "title": "Exception Handling with try/catch"
+        }
+      ]
+    },
+    {
+      "id": "topic-2-3",
+      "title": "Methods and Functions",
+      "description": "Learn to create, organize, and use methods effectively in C# programming.",
+      "contentPath": "topics/module-2/topic-2-3.md",
+      "subtopics": [
+        {
+          "id": "subtopic-2-3-1",
+          "title": "Method Definition and Calling"
+        },
+        {
+          "id": "subtopic-2-3-2",
+          "title": "Parameters and Return Types"
+        },
+        {
+          "id": "subtopic-2-3-3",
+          "title": "Method Overloading"
+        },
+        {
+          "id": "subtopic-2-3-4",
+          "title": "Optional and Named Parameters"
+        },
+        {
+          "id": "subtopic-2-3-5",
+          "title": "Static vs Instance Methods"
+        }
+      ]
+    },
+    {
+      "id": "topic-2-4",
+      "title": "Object-Oriented Programming",
+      "description": "Understand classes, objects, inheritance, and core OOP principles in C#.",
+      "contentPath": "topics/module-2/topic-2-4.md",
+      "subtopics": [
+        {
+          "id": "subtopic-2-4-1",
+          "title": "Classes and Objects"
+        },
+        {
+          "id": "subtopic-2-4-2",
+          "title": "Encapsulation and Access Modifiers"
+        },
+        {
+          "id": "subtopic-2-4-3",
+          "title": "Inheritance and Polymorphism"
+        },
+        {
+          "id": "subtopic-2-4-4",
+          "title": "Interfaces and Abstract Classes"
+        },
+        {
+          "id": "subtopic-2-4-5",
+          "title": "Constructors and Destructors"
+        }
+      ]
+    },
+    {
+      "id": "topic-2-5",
+      "title": "C# Advanced Concepts",
+      "description": "Explore advanced C# features including delegates, events, LINQ, and asynchronous programming.",
+      "contentPath": "topics/module-2/topic-2-5.md",
+      "subtopics": [
+        {
+          "id": "subtopic-2-5-1",
+          "title": "Delegates and Events"
+        },
+        {
+          "id": "subtopic-2-5-2",
+          "title": "Lambda Expressions"
+        },
+        {
+          "id": "subtopic-2-5-3",
+          "title": "LINQ Basics"
+        },
+        {
+          "id": "subtopic-2-5-4",
+          "title": "Generics"
+        },
+        {
+          "id": "subtopic-2-5-5",
+          "title": "Asynchronous Programming with async/await"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "type": "documentation",
+      "title": "Microsoft C# Documentation",
+      "url": "https://docs.microsoft.com/en-us/dotnet/csharp/"
+    },
+    {
+      "type": "tutorial",
+      "title": "C# Programming Guide",
+      "url": "https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/"
+    },
+    {
+      "type": "practice",
+      "title": "Unity C# Practice Projects",
+      "url": "resources/csharp-practice-projects.zip"
+    },
+    {
+      "type": "reference",
+      "title": "Unity Scripting API",
+      "url": "https://docs.unity3d.com/ScriptReference/"
+    }
+  ]
+}

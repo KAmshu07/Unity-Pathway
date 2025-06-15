@@ -8,7 +8,8 @@
       "name": "Foundation Phase",
       "description": "Build a solid foundation in Unity and C# programming",
       "modules": [
-        "module-1"
+        "module-1",
+        "module-2"
       ]
     }
   ],
